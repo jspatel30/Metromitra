@@ -1,0 +1,115 @@
+.Main-Container {
+    position: relative;
+    text-align: center;
+    height: 110vh;
+}
+
+.Main-Container img {
+    z-index: -1;
+    width: 100%;
+
+}
+
+.ImageCon_Registration {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 130vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImageCon_Registration img {
+    height: 100%;
+    width: 100%;
+}
+.Registration-Container {
+    background-color: #bbc5ca7b;
+    width: 500px;
+    height: 730px;
+    position: absolute;
+    top: 60px;
+    display: flex;
+    left: 550px;
+    border-radius: 10px;
+}
+
+.Registration-Content {
+    width: 100%;
+    margin: 10px;
+}
+
+.Logo {
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+    margin-left: 185px;
+    margin-top: 30px;
+}
+
+.form{
+    margin-top: 20px;
+}
+
+.form input {
+    width: 280px;
+    margin: 10px;
+    border-radius: 20px;
+    border-width: 0;
+    height: 50px;
+    background-color: #d9d9d9;
+    text-indent: 20px;
+    
+}
+
+.form input::placeholder {
+    
+    color: #7f7f7f;
+    font-size: larger;
+    font-weight: 600;
+    /* padding-left: 60px; */
+}
+
+.form input[type="submit"]
+{
+    background-color: #0fda9b;
+    color: #ffff;
+    font-weight: 600;
+    font-size: 30px;   
+}
+
+.radio{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 20px;
+}
+
+.radio input
+{
+    border-width: 0;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    /* background-color: red; */
+    width:50px;
+}
+
+.radio label
+{
+    padding: 0;
+    margin: 0;
+
+}
+
+.Registration-Content Link{
+    color: black;
+}
+

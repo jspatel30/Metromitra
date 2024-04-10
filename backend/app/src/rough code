@@ -1,0 +1,58 @@
+//getServiceByName
+// const getServiceByName = async(req,res) =>{
+//     try
+//     {
+//         const serviceName = req.body.ServiceName
+//         // const service = await ServiceModel.find({ServiceName:serviceName}).populate("Category").populate("SubCategory").populate("Type").populate("ServiceProvider")
+
+//         const aggregatePipeline = [
+//             // Group by Service and calculate the average star rating
+//             {
+//                 $group: {
+//                     _id: "$Service",
+//                     avgStar: { $avg: "$Stars" }
+//                 }
+//             }
+//         ];
+
+//         const serviceAggregate = await OrderModel.aggregate(aggregatePipeline);
+//         const services = await ServiceModel.find({ServiceName:serviceName});
+
+//         const avgStarMap = new Map();
+//         serviceAggregate.forEach(item => {
+//             avgStarMap.set(item._id.toString(), item.avgStar);
+//             console.log(item);
+//             console.log(avgStarMap);
+//         });
+//         console.log(avgStarMap.get('65f9be4e6d76550bda7db1ef'))
+//         const servicesWithAvgStar = services.map(service => {
+//             console.log(avgStarMap.get(service._id.toString()));
+//             return {    
+//                 service,
+//                 averageStar: avgStarMap.get(service._id.toString()) || 0
+//             };
+//         });
+//         if(servicesWithAvgStar != null)
+//         {
+//             res.status(200).json({
+//                 message:"Service Retrieved",
+//                 data:servicesWithAvgStar,
+//                 flag:1
+//             })
+//         }
+//         else
+//         {
+//             res.status(400).json({
+//                 message:"Service Not Retrieved",
+//             })
+//         }
+//     }
+//     catch(error)
+//     {
+//         res.status(500).json({
+//             message:"Server Error",
+//             error,
+//             flag:-1
+//         })
+//     }
+// }

@@ -1,0 +1,108 @@
+.Main-Container {
+    position: relative;
+    text-align: center;
+    height: 100%;
+}
+
+.Main-Container img {
+    z-index: -1;
+    width: 100%;
+    
+}
+
+.ImageCon_Login {
+
+    height: 130vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Login-Container {
+    background-color: #bbc5ca7b;
+    width: 400px;
+    position: absolute;
+    top: 90px;
+    display: flex;
+    left: 600px;
+    border-radius: 10px;
+}
+
+.Login-Content {
+    width: 100%;
+    margin: 20px;
+}
+
+.LoginLogo {
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+    margin-left: 145px;
+    margin-top: 30px;
+}
+
+.Login_Radio{
+    /* display: flex;
+    flex-direction: column; */
+    text-align: left;
+    padding-left: 20px;
+    width: 280px;
+    margin: 10px;
+    background-color: #d9d9d9;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.Login_Radio input{
+    border-width: 0;
+    height: 20px !important;
+    padding: 0;
+    margin: 0;
+    width:20px !important;
+}
+
+.Login_Radio label{
+    padding: 0;
+    margin: 0;
+}
+
+form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form input {
+    width: 280px;
+    margin: 10px;
+    border-radius: 20px;
+    border-width: 0;
+    height: 50px;
+    background-color: #d9d9d9;
+    text-indent: 20px;
+    
+}
+
+.form input::placeholder {
+    
+    color: #7f7f7f;
+    font-size: larger;
+    font-weight: 600;
+    /* padding-left: 60px; */
+}
+
+form input[type="submit"]
+{
+    background-color: #0fda9b;
+    color: #ffff;
+    font-weight: 600;
+    font-size: 30px !important;   
+    text-indent: 0px !important;
+}
+
+
+

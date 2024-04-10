@@ -1,0 +1,55 @@
+.About_Main_Container
+{
+    position: relative;
+    text-align: center;
+}
+
+.About_BackgroundImage
+{
+    height: 110vh;
+    width: 100%;
+}
+
+.Inside_About_Image
+{
+    z-index: 1;
+    top: 100px;
+    left: 100px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.About_Content
+{
+    z-index: 1;
+    position: absolute;
+    top: 100px;
+    left: 620px;
+    height: 70vh;
+    width: 120vh;
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.About_Content h1
+{
+    color: #ffff;
+    font-family: inherit;
+    font-weight: 750;
+    font-size: 70px;
+    text-align: left;
+}
+
+.About_Content p
+{
+    font-weight: 300;
+    font-size: 30px;
+    color: #ffff;
+    font-family: inherit;
+    text-align: left;
+    
+}

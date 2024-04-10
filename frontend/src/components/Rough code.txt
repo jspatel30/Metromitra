@@ -1,0 +1,256 @@
+  {/* <div className='serviceContainer2'>
+
+        {Service && (
+          <div>
+            <table className='table'>
+              <tr>
+                <th>Service Name</th>
+                <th>Area</th>
+                <th>Fees</th>
+                <th>City</th>
+                <th>Action</th>
+              </tr>
+              {
+                Service.map((s) => (
+                  <tr>
+                    <td>{s.ServiceName}</td>
+                    <td>{s.Area}</td>
+                    <td>{s.Fees}</td>
+                    <td>{s.City}</td>
+                    <td><button onClick={() => { }} className='btn btn-primary'>Book Now</button></td>
+                  </tr>
+                ))}
+            </table>
+          </div>
+        )} 
+      </div>*/}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Add Service Code
+
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('password', data.password);
+      formData.append('phone', data.phone);
+      formData.append('file', data.file[0]);
+
+
+      try {
+        const response = await fetch('http://localhost:5000/serviceprovider/addService', {
+          method: 'POST',
+          body: formData,
+        }).then((response) => {
+          console.log("form data response...", response)
+          // navigate("/login")
+        });
+
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+         
+    // const [userById, setuserById] = useState([])
+    // const getuserById = async () => {
+    //     console.log("User By Id is Called... ")
+    //     const userId = localStorage.getItem("UserId")
+    //     const res = await axios.get("http://localhost:5000/getuser/getUserById/"+userId)
+    //     console.log("Get User By Id.. ",res.data.user)
+    //     setuserById(res.data.user)
+    //     console.log("User By Id.. ",userById)
+    // }
+
+
+
+
+const [renderedRows, setRenderedRows] = useState([]);
+    const [order, setorder] = useState([])
+
+    const getOrder = async() =>{
+        const res = await axios.get("http://localhost:5000/order/getOrder")
+        console.log("data... ",res.data.data)
+        console.log("res.data.data..",res.data.data)
+        setorder(res.data.data)
+    }
+
+    const getServiceProviderById = async(ServiceProviderId) => {
+        console.log("ServiceProviderId",ServiceProviderId)
+        const res = await axios.get("http://localhost:5000/serviceprovider/getServiceProviderById/"+ServiceProviderId)
+        console.log("res.data.data.name..",res.data.data.name)
+        return res.data.data.name
+    };
+    
+    useEffect(() => {
+        getOrder();
+        
+        const fetchData = async () => {
+            const rows = await renderOrderRows();
+            setRenderedRows(rows);
+        };
+        fetchData();
+    }, []);
+    
+
+    const renderOrderRows = async () => {
+        console.log("1")
+        console.log(order)
+
+        const continuousLoop = setInterval(() => {
+            // Check if orderedArray has data
+            if (orderedArray.length > 0) {
+              clearInterval(continuousLoop); // Break the loop if there's data
+            } else {
+              // If no data, continue looping
+              console.log("Looping...");
+            }
+          }, 1000);
+
+        const rows = [];
+        for (let o of order) {
+            const serviceProviderName = await getServiceProviderById(o.Service.ServiceProvider);
+            rows.push(
+                <tr >
+                    <td>{serviceProviderName}</td>
+                    <td>{o.Service.Fees}</td>
+                    <td>{o.Date}</td>
+                    <td>{o.Service.ServiceName}</td>
+                    <td>{o.Status}</td>
+                </tr>
+            );
+            console.log("2")
+        }
+        return rows;
+    };
+
+
+
+
+
+
+
+
+
+
+     const renderOrderRows = async () => {
+        const rows = [];
+        for (let o of order) {
+            const serviceProviderName = await getServiceProviderById(o.Service.ServiceProvider);
+            rows.push(
+                <tr>
+                    <td>{serviceProviderName}</td>
+                    <td>{o.Service.Fees}</td>
+                    <td>{o.Date}</td>
+                    <td>{o.Service.ServiceName}</td>
+                    <td>{o.Status}</td>
+                </tr>
+            );
+        }
+        return rows;
+    };
+
+
+
+// const acceptOrder = async (orderId) => {
+  //   const res = await axios.put("http://localhost:5000/order/updateOrderById/" + orderId, { Status: "Accepted" });
+  //   console.log("Accepted Order.. ", res.data.data)
+
+
+  // const acceptButton = document.getElementById(`button-${orderId}`);
+  // if (acceptButton) {
+  //   acceptButton.textContent = "Complete";
+  // }
+
+  //   const rejectButton = document.getElementById(`reject-button-${orderId}`);
+  //   if (rejectButton) {
+  //     rejectButton.textContent = "Cancel";
+  //   }
+  // }
+
+  // const rejectOrder = async (orderId) => {
+  //   const res = await axios.put("http://localhost:5000/order/updateOrderById/" + orderId, { Status: "Rejected" });
+  //   console.log("Rejected Order.. ", res.data.data)
+  //   // Hide the parent row container
+  //   const orderRow = document.getElementById(`order-row-${orderId}`);
+  //   if (orderRow) {
+  //     orderRow.style.display = "none";
+  //   }
+
+  // }
+
+
+
+   {/* <button id={`button-${o._id}`} className={`btn ${o.Status.toLowerCase() === "accepted" ? "btn-success" : "btn-primary"}`} onClick={() => { acceptOrder(o._id) }} disabled={o.Status.toLowerCase() === "completed"}>
+                        {o.Status.toLowerCase() === "pending" ? "Accept" : (o.Status.toLowerCase() === "accepted" ? "Complete" : "Completed !")}
+                      </button> */}
+                        
+                        {/* { */}
+                        {/* o.Status !== "Completed" &&( */}
+                        {/* // <button id={`reject-button-${o._id}`} className='btn btn-danger' onClick={() => { rejectOrder(o._id) }}>Reject</button> */}
+
+                        {/* )} */}
+
+
+
+
+
+
+
+
+
+
+{/* <td><button className='btn btn-primary'>{o.Status}</button></td> */}
+                      {/* <td>
+                        {o.Status.toLowerCase() === 'pending' && (
+                          <div>
+                            <button onClick={() => handleAccept(o._id)} className={o.Status.toLowerCase() === 'pending' ? 'btn btn-primary' : o.Status.toLowerCase() === 'accepted' ? 'btn btn-primary' : o.Status.toLowerCase() === 'complete' ? 'btn btn-success' : ''}>
+                              {acceptedOrderId === o._id ? 'Complete' : 'Accept'}
+                            </button>
+                            |
+                            <button onClick={() => handleReject(o._id)} className='btn btn-danger'>
+                              {o.Status.toLowerCase() === 'pending' ? 'Reject' : 'Cancel'}
+                            </button>
+                          </div>
+                        )}
+                        {o.Status.toLowerCase() === 'accepted' && (
+                          <div>
+                            <button onClick={() => handleComplete(o._id)} className={o.Status.toLowerCase() === 'accepted' ? 'btn btn-primary' : o.Status.toLowerCase() === 'complete' ? 'btn btn-success' : ''}>
+                              {completedOrderId === o._id ? 'Completed' : 'Complete'}
+                            </button>
+                            |
+                            <button onClick={() => handleCancel(o._id)} className='btn btn-danger'>Cancel</button>
+                          </div>
+                        )}
+
+
+                      </td> */}

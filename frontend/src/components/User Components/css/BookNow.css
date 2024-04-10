@@ -1,0 +1,272 @@
+.bookNow_Container
+{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bookNow_box
+{
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Service_Image
+{
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 250px;
+    height: 300px;
+}
+
+.Service_Image img
+{
+    width: 100%;
+}
+
+.Service_Content{
+    padding-left: 100px;
+    display: flex;
+    text-align: left;
+    gap: 20px;
+    height: 230px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.bookNow_Button
+{
+    width:200px;
+    padding-left:100px;
+}
+
+.bookNow_Form input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.bookNow_Button Button
+{
+    background-color: #0FDA9B;
+    width:180px;
+    color: #ffff;
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0;
+    z-index: 1;
+}
+
+.bookNow_Form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f981;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bookNow_Form div {
+    margin-bottom: 15px;
+}
+
+.bookNow_Form label {
+    font-weight: bold;
+}
+
+.bookNow_Form input[type="date"],
+.bookNow_Form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.modal_content
+{
+    font-size: 20px;
+    margin-left: 50px;
+
+}
+
+
+.readReviews_Button{
+    width:180px !important;
+    color: #ffff;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;
+    padding: 0px 10px 10px 100px;
+    
+}
+.readReviews_Button button{
+    width: 180px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+/* .ServiceProviderReviews
+{
+    background-color: rgb(214, 201, 201);
+    height: 100%;
+    margin: 20px;
+}
+
+.Reviews_Container
+{
+    background-color: #e2e2e2;
+    margin: 5px;
+    width: 100%;
+    height: 10%;
+}
+
+.Reviews_Container h4
+{
+    text-align: left;
+    
+} */
+
+
+
+.ServiceProviderReviews {
+    background: linear-gradient(to bottom, #ffff, #d6c9c9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ReviewsTitle {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.ReviewsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Review {
+    flex-basis: calc(50% - 10px);
+    background-color: #e2e2e2;
+    /* background-color: #F0F8FF; */
+    /* background-color: #F5F5DC; */
+
+    
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+
+.StarsContainer {
+    margin-bottom: 15px;
+}
+
+.StarIcon {
+    color: #ffc107;
+    font-size: 24px;
+}
+
+.UserReview {
+    color: #555555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Hover animation for reviews */
+.Review:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+
+/* Adjusting grid for even number of reviews */
+@media (min-width: 768px) {
+    .ReviewsWrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Handling odd number of reviews */
+.Review:nth-child(odd) {
+    margin-right: auto;
+}
+
+
+
+/* Updated CSS with a more modern design */
+
+/* .ServiceProviderReviews {
+    background: linear-gradient(to bottom, #ffffff, #f0f2f5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ReviewsTitle {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.ReviewsWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.Review {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+}
+
+.StarsContainer {
+    margin-bottom: 15px;
+}
+
+.StarIcon {
+    color: #ffc107;
+    font-size: 24px;
+}
+
+.UserReview {
+    color: #555555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.Review:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+} */

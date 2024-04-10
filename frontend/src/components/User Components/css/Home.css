@@ -1,0 +1,141 @@
+.Container
+{
+    position: relative;
+    text-align: center;
+    /* color: white; */
+}
+
+.try{
+    background-color: #0000007e;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 105%;
+}
+.Container img{
+    z-index: -1;
+}
+.content
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: red; */
+    width: 100%;
+    height: 50%;
+    margin-top: 100px;
+    padding: 0;
+}
+.metromitra
+{
+    color: #ffffff;
+    /* color: black; */
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 65px;
+}
+.metromitra1
+{
+    font-family: 'Inter';
+    color: #D1D1D1;
+    font-size: 40px;
+    margin-top: 0;
+}
+
+.bookNow button
+{
+    cursor: pointer;
+    background-color: #0FDA9B;
+    font-family: 'Inter';
+    font-size: 24px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border-radius: 25px;
+    border-width: 0;
+    height: 50px;
+    width: 180px;
+    padding: 5px;
+}
+
+.BackgroundImage{
+    height: 110vh;
+}
+
+
+.Container2
+{
+    background-color: #dee0df;
+    /* height: 100vh; */
+    margin-top: 40px;
+}
+
+.content2
+{
+    margin: 40px;
+    /* background-color: red; */
+    padding-top: 70px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+
+}
+
+.content2 p
+{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.All_Service
+{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll ;
+    /* overflow-y: auto; */
+}
+
+.services
+{
+    height: 500px;
+    width:360px;
+    margin: 50px;
+    margin-top: -5px;
+    border-radius: 15px;  
+    overflow: hidden; 
+}
+
+
+.services img {
+    width: 360px;
+}
+
+
+.services:hover .moreButton{
+    overflow: hidden;
+    opacity:0.7;
+    z-index: 1;
+}
+
+.moreButton
+{
+    z-index: 1;
+    background-color: #919191;
+    height: 100%;
+    opacity: 0;
+    width: 360px;
+    transition: all 0.2s ease-in-out;
+}
+
+.moreButton button
+{
+    color:#FFFFFF;
+    background-color: #0fda9b;
+    border-radius: 40px;
+    width: 150px;
+    height: 50px;
+    font-size: 35px;
+    margin-top: 60%;
+    border-width: 0;
+    cursor: pointer;
+}
