@@ -14,6 +14,7 @@ import { History } from './components/Service Provider Components/History';
 import { ManageServices } from './components/Service Provider Components/ManageServices';
 import { BookNow } from './components/User Components/BookNow';
 import { UserOrderPage } from './components/User Components/UserOrderPage';
+import DownloadInvoice  from './components/DownloadInvoice';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/history" element={<History/>}/>
           <Route path='/manageservice' element={<ManageServices/>}/>
           <Route path='/booknow' element={<BookNow/>}/>
+          <Route path='/invoice-download/:orderId' element={<DownloadInvoice />} />
         </Routes>
         <Footer />
 

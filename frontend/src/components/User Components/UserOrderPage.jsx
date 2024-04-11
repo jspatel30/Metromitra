@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/UserOrderPage.css'
 import { FaStar } from 'react-icons/fa';
@@ -6,6 +7,7 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from 'react-hook-form';
+import ReactPDF from '@react-pdf/renderer';
 
 export const UserOrderPage = () => {
 
@@ -169,23 +171,11 @@ export const UserOrderPage = () => {
     };
 
 
+    const navigate = useNavigate()
     const invoice = async(orderId) => {
         console.log(orderId)
-        const res = await axios.get("http://localhost:5000/orderList/getOrderListByOrderId/" + orderId);
-        console.log("OrderList By Id.. ",res.data)
-
+        navigate(`/invoice-download/${orderId}`)
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
