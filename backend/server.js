@@ -12,6 +12,7 @@ const CategoryRoutes = require("./app/src/routes/CategoryRoutes")
 const SubCategoryRoutes = require("./app/src/routes/SubCategoryRoutes")
 const TypeRoutes = require("./app/src/routes/TypeRoutes")
 const OrderRoutes = require("./app/src/routes/OrderRoutes")
+const OrderListRoutes = require("./app/src/routes/OrderListRoutes")
 const EmailRoutes = require("./app/src/routes/EmailRoutes")
 const authMiddleware = require("./app/src/middleware/auth.middleware")
 
@@ -50,6 +51,10 @@ app.use("/email",EmailRoutes)
 
 //Order Routes
 app.use("/order",OrderRoutes)
+
+//Order List Routes
+app.use("/orderList",OrderListRoutes)
+
 
 //CategoryRoutes
 app.use("/category",CategoryRoutes)

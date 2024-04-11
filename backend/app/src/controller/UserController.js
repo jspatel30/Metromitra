@@ -1,4 +1,5 @@
 const UserModel = require("../model/UserModel")
+const sendMailAtLogin = require("./SendMailController")
 const jwt = require("jsonwebtoken")
 const {SEC_KEY} = process.env
 
@@ -55,18 +56,32 @@ const getUser = async(req,res) =>{
 
 //loginUser
 const loginUser = async(req,res) =>{
-    try
-    {
+    // try
+    // {
         const user = await UserModel.findOne({email:req.body.email})
-        // console.log("user - ",user)
+        console.log("user - ",user)
         if(user != null)
         {
             if(user.password == req.body.password)
             {
+                const generateRandomNumber = () => {
+                    const min = 100000;
+                    const max = 999999;
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                };
+                const randomNumber = generateRandomNumber();
+                const mail = {
+                    name:user.name,
+                    email:user.email,
+                    Otp:randomNumber
+                }
+                const mail_check = sendMailAtLogin.sendMailAtLogin(mail)
+
                 const token = jwt.sign({"email":user.email,"userId":user._id},SEC_KEY)
                 res.status(200).json({
                     message:"User Login Successfully",
                     data:user,
+                    Otp:randomNumber,
                     token:token,
                     flag:1
                 })
@@ -86,15 +101,15 @@ const loginUser = async(req,res) =>{
                 flag:-1
             })
         }
-    }
-    catch(error)
-    {
-        res.status(500).json({
-            message:"Server Error",
-            error:error,
-            flag:-1
-        })
-    }
+    // }
+    // catch(error)
+    // {
+    //     res.status(500).json({
+    //         message:"Server Error",
+    //         error:error,
+    //         flag:-1
+    //     })
+    // }
 
 }
 

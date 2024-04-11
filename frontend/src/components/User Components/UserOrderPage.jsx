@@ -168,6 +168,28 @@ export const UserOrderPage = () => {
         setShowDetailModal(false)
     };
 
+
+    const invoice = async(orderId) => {
+        console.log(orderId)
+        const res = await axios.get("http://localhost:5000/orderList/getOrderListByOrderId/" + orderId);
+        console.log("OrderList By Id.. ",res.data)
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <>
             <div className='UserOrder_MainContainer'>
@@ -210,9 +232,10 @@ export const UserOrderPage = () => {
                                                                         o.Status === 'Cancelled' ? 'btn btn-danger' : 'btn btn-primary'
                                                         }
                                                         style={{ width: '100px', borderRadius: "10px", }}
-                                                        disabled
+                                                        disabled={o.Status !== 'Completed'}
+                                                        onClick={()=>{invoice(o._id)}}
                                                     >
-                                                        {o.Status}
+                                                        {o.Status === 'Completed' ? 'Invoice' : o.Status}
                                                     </button>
                                                 )}
                                                 &nbsp;

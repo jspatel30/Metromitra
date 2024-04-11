@@ -3,7 +3,7 @@ const ServiceProviderModel = require("../model/ServiceProviderModel")
 // const sharp = require("sharp")
 const jwt = require("jsonwebtoken")
 const {SEC_KEY} = process.env
-
+const sendMailAtLogin = require("./SendMailController")
 
 
 //getServiceProvider
@@ -119,10 +119,24 @@ const loginServiceProvider = async(req,res) =>{
         {
             if(ServiceProvider.password == req.body.password)
             {
+                const generateRandomNumber = () => {
+                    const min = 100000;
+                    const max = 999999;
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                };
+                const randomNumber = generateRandomNumber();
+                const mail = {
+                    name:ServiceProvider.name,
+                    email:ServiceProvider.email,
+                    Otp:randomNumber
+                }
+                const mail_check = sendMailAtLogin.sendMailAtLogin(mail)
+                
                 const token = jwt.sign({"email":ServiceProvider.email,"userId":ServiceProvider._id},SEC_KEY)
                 res.status(200).json({
                     message:"ServiceProvider Login Successfully",
                     data:ServiceProvider,
+                    Otp:randomNumber,
                     token:token,
                     flag:1
                 })

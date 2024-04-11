@@ -36,6 +36,7 @@ export const DataProvider = ({children}) => {
       setRegistrationData(data)
     }
 
+    
 
     return(
             <DataContext.Provider value={{
