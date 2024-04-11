@@ -42,7 +42,7 @@ function App() {
           <Route path="/history" element={<History/>}/>
           <Route path='/manageservice' element={<ManageServices/>}/>
           <Route path='/booknow' element={<BookNow/>}/>
-          <Route path='/invoice-download/:orderId' element={<DownloadInvoice />} />
+          <Route path='/invoice-download/:orderId' element={<DownloadInvoice  />} />
         </Routes>
         <Footer />
 

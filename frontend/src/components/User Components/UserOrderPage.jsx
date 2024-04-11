@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from 'react-hook-form';
 import ReactPDF from '@react-pdf/renderer';
+import DownloadInvoice  from '../DownloadInvoice';
 
 export const UserOrderPage = () => {
 
@@ -27,6 +28,8 @@ export const UserOrderPage = () => {
         getOrder();
     }, []);
 
+
+    
     useEffect(() => {
         if (Order.length > 0) {
             const dataTable = window.$(tableRef.current).DataTable();
@@ -212,8 +215,9 @@ export const UserOrderPage = () => {
                                             <td>{o.Service.Fees}</td>
                                             <td>{new Date(o.Date).toLocaleDateString('en-GB')}</td>
                                             <td>{o.Service.ServiceName}</td>
-                                            <td>
+                                            <td style={{minWidth:"100px"}}>
                                                 {o.Status.toLowerCase() !== "cancelled" && (
+                                                    
                                                     <button
                                                         className={
                                                             o.Status === 'Completed' ? 'btn btn-success' :
@@ -223,9 +227,9 @@ export const UserOrderPage = () => {
                                                         }
                                                         style={{ width: '100px', borderRadius: "10px", }}
                                                         disabled={o.Status !== 'Completed'}
-                                                        onClick={()=>{invoice(o._id)}}
+                                                        // onClick={()=>{invoice(o._id)}}
                                                     >
-                                                        {o.Status === 'Completed' ? 'Invoice' : o.Status}
+                                                        {o.Status === 'Completed' ? <DownloadInvoice  orderId = {o._id}/> : o.Status}
                                                     </button>
                                                 )}
                                                 &nbsp;
