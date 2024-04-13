@@ -169,15 +169,15 @@ export const BookNow = () => {
 
                             <div className='Service_Content'>
                                 <div>
-                                    {/* <h3><b>Name:</b> {s.service.ServiceProvider.name}</h3> */}
                                     <h3><b>Name:</b> {Service.service.ServiceProvider.name}</h3>
                                     <h3><b>Area:</b> {Service.service.Area}</h3>
-                                    {/* <h3><b>Area:</b> {s.service.Area}</h3> */}
+                                    
                                 </div>
 
                                 <div>
                                     <h3><b>Service:</b> {Service.service.ServiceName}</h3>
-                                    <h3><b>Fees:</b> {Service.service.Fees}</h3>
+                                    <h3><b>Visiting Fees:</b> {Service.service.Fees}</h3>
+                                    <h3><b>Approximate Charge:</b>{Service.service.Minimum} to {Service.service.Maximum}</h3>
                                     {/* <h3><b>Feedback:</b> </h3>Total Number of Reviews */}
                                     {
                                         Service.averageStar.toFixed(1) > 0.0 &&
@@ -220,7 +220,8 @@ export const BookNow = () => {
                             <div className='modal_content'>
                                 <label><b>Name:</b> {Service.service.ServiceProvider.name}</label><br />
                                 <label><b>Service:</b> {Service.service.ServiceName}</label><br />
-                                <label><b>Fees:</b> {Service.service.Fees}</label><br />
+                                <label><b>Visiting Fees:</b> {Service.service.Fees}</label><br />
+                                <label><b>Approximate Charge:</b> {Service.service.Minimum} to {Service.service.Maximum}</label><br />
                             </div>
                         </>
                         {/* ))

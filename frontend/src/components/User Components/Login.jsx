@@ -32,7 +32,7 @@ export const Login = () => {
         if (otpFromForm.otp == response.data.Otp) {
             resetOtp()
 
-            if (response.data.data.role == "660d478cb08efd702f23f113") {
+            if (response.data.data.role == "660d478cb08efd702f23f113") { //User
                 toast.success('Login Successfull..!', {
                     position: "top-right",
                     autoClose: 750,
@@ -56,6 +56,7 @@ export const Login = () => {
             }
             else
             {
+                //Service Provider
                 toast.success('Login Successfull..!', {
                     position: "top-right",
                     autoClose: 750,
@@ -78,8 +79,21 @@ export const Login = () => {
                 }, 500);
             }
         }
-
-
+        else
+        {
+            toast.error('Please enter correct OTP..!', {
+                position: "top-right",
+                autoClose: 750,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored"
+              });
+              resetOtp()
+            //   handleClose()
+        }
     }
 
     const handleShow = () => {
@@ -112,6 +126,7 @@ export const Login = () => {
         for (var j = 0; j < modals.length; j++) {
             modals[j].style.display = 'none';
         }
+        resetOtp()
         setshow(false)
     };
 

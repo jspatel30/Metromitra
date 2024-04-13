@@ -150,7 +150,7 @@
 
 
 .ServiceProviderReviews {
-    background: linear-gradient(to bottom, #ffff, #d6c9c9);
+    /* background: linear-gradient(to bottom, #ffff, #d6c9c9); */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -165,14 +165,18 @@
 
 .ReviewsWrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 .Review {
-    flex-basis: calc(50% - 10px);
+    /* flex-basis: calc(50% - 10px); */
     background-color: #e2e2e2;
-    /* background-color: #F0F8FF; */
+    width: 600px;
+    background-color: #d2e2ef;
     /* background-color: #F5F5DC; */
 
     
@@ -214,9 +218,9 @@
 }
 
 /* Handling odd number of reviews */
-.Review:nth-child(odd) {
+/* .Review:nth-child(odd) {
     margin-right: auto;
-}
+} */
 
 
 

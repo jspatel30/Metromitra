@@ -71,6 +71,8 @@ export const ManageServices = () => {
     formData.append('Area', data.Area);
     formData.append('City', data.City);
     formData.append('State', data.State);
+    formData.append('Minimum', data.Minimum);
+    formData.append('Maximum', data.Maximum);
     formData.append('File', data.File[0]);
     formData.append('ServiceProvider', serviceProviderId);
 
@@ -100,16 +102,9 @@ export const ManageServices = () => {
   }
 
   const updateServiceById = async (data) => {
-    // console.log("data,,,,,,,,,", data)
+
+    console.log("data,,,,,,,,,", data)
     const res = await axios.put("http://localhost:5000/service/updateServiceById/" + data.ServiceId, data)
-
-    // const mailData = {
-    //   name: data.User.name,
-    //   mail: data.User.email,
-    //   message: "We're delighted to inform you that your service request for an <b>"+data.Service.ServiceName+"</b> has been accepted by our service provider. Your appointment is scheduled for "+Time.Time+" (24 Hour GMT).<br><br>  Please ensure someone is available at the specified time to facilitate the service. If you have any specific instructions to provide, feel free to let us know.<br><br> Thank you for choosing METROMITRA. We're committed to providing you with excellent service.<br><br><b>Date: "+properDate+"</b><br><b>Time: "+Time.Time+"</b><br><b>Address: "+data.Address+"</b><br><br> Best Regards,<br> METROMITRA"
-    // }
-    // const mail = axios.post("http://localhost:5000/email/sendMail", mailData)
-
 
     console.log("Updated Service.. ", res.data.data)
     getServices()
@@ -149,7 +144,7 @@ export const ManageServices = () => {
 
       <div className='Form' style={{ background: "url('/assets/desktop-wallpaper-best-6-management-backgrounds-on-hip-project-manager.jpg')", backgroundRepeat: "no-repeat", backgroundSize: "cover", width: "100%" }}>
 
-        <form className="form-container" onSubmit={handleSubmit(SubmitHandler)} >
+        <form className="form_container" onSubmit={handleSubmit(SubmitHandler)} >
           {/* <div className="form-group">
             <label htmlFor="ServiceName">Service Name:</label>
             <input type="text" id="ServiceName" {...register("ServiceName")} />
@@ -162,7 +157,7 @@ export const ManageServices = () => {
 
           <div class="form-floating mb-3">
             <input type="text" id="Fees" class="form-control" placeholder="Fees" style={{ color: "black !important", width: "350px" }} {...register("Fees")} />
-            <label for="Fees" style={{ color: "black" }}>Fees</label>
+            <label for="Fees" style={{ color: "black" }}>Visiting Fees</label>
           </div>
 
           <div class="form-floating mb-3">
@@ -170,6 +165,22 @@ export const ManageServices = () => {
             <label for="Area" style={{ color: "black" }}>Area</label>
           </div>
 
+
+          <label for="Area1" style={{ color: "white" , width:"350px", textAlign:"left"}}>Approximate Cost</label>
+          <div class='row' style={{width:"380px"}}>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" id="Minimum" class="form-control" placeholder="Minimum" style={{ color: "black !important", width: "100%" }} {...register("Minimum")} />
+                <label for="Minimum" style={{ color: "black" }}>Minimum</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" id="Maximum" class="form-control" placeholder="Maximum" style={{ color: "black !important", width: "100%" }} {...register("Maximum")} />
+                <label for="Maximum" style={{ color: "black" }}>Maximum</label>
+              </div>
+            </div>
+          </div>
 
           <div class="form-floating">
             <select class="form-select" id="City" aria-label="Floating label select example" style={{ color: "black", width: "350px" }} {...register("City")}>
@@ -182,20 +193,12 @@ export const ManageServices = () => {
             <label for="City">City</label>
           </div>
 
-          <br></br>
+          <br/>
 
           <div class="form-floating mb-3" style={{ padding: "5px" }}>
-            <input type="file" id="File" class="form-control" placeholder="File" style={{ color: "black !important", width: "350px" , }} {...register("File")} />
+            <input type="file" id="File" class="form-control" placeholder="File" style={{ color: "black !important", width: "350px", }} {...register("File")} />
             <label for="File" style={{ color: "black" }}>Service Profile Pic</label>
           </div>
-
-
-
-          {/* <div className="form-group">
-            <label htmlFor="File">Service Profile Pic:</label>
-            <input type="file" id="File" {...register("File")} />
-          </div> */}
-             
 
 
           <input type="hidden" {...register("ServiceProvider")} value={serviceProviderId} />
@@ -204,6 +207,8 @@ export const ManageServices = () => {
           </div>
         </form>
       </div>
+
+
       <h1 style={{ width: "100%", textAlign: "left", padding: "0px 0px 50px 50px" }}>Service List :</h1>
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <div style={{ minHeight: '100vh', overflow: "hidden", width: "80%" }}>
@@ -212,7 +217,7 @@ export const ManageServices = () => {
               <tr>
                 <th>Sr. No.</th>
                 <th>Service Name</th>
-                <th>Fees</th>
+                <th>Visiting Fees</th>
                 <th>Area</th>
                 <th>City</th>
                 <th>Service Image</th>
@@ -241,9 +246,6 @@ export const ManageServices = () => {
                           </Modal.Header>
                           <Modal.Body>
                             {
-                              console.log("existingData.......", existingData)
-                            }
-                            {
                               // existingData && existingData.map((data) => (
 
                               existingData && (
@@ -255,7 +257,7 @@ export const ManageServices = () => {
                                   </div>
 
                                   <div className="Update-form-group">
-                                    <label htmlFor="Update-Fees">Fees:</label>
+                                    <label htmlFor="Update-Fees">Visiting Fees:</label>
                                     <input type="text" id="Update-Fees" placeholder='Enter your Updated Fees' defaultValue={existingData ? existingData.Fees : ''} {...updateRegister("Fees")} />
                                   </div>
 
@@ -290,7 +292,7 @@ export const ManageServices = () => {
                             <Button variant="secondary" onClick={handleClose}>
                               Close
                             </Button>
-                            <Button variant="success" onClick={updateHandleSubmit(updateServiceById)}>Update</Button>
+                            <Button variant="success" onClick={() => updateHandleSubmit(updateServiceById)}>Update</Button>
                           </Modal.Footer>
                         </Modal>
                       </div>

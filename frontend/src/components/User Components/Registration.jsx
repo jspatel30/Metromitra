@@ -73,7 +73,7 @@ export const Registration = () => {
   const verifyOTP = (data) => {
     if (randomNumber === data.otp) {
       console.log("OTP Matched")
-      toast.success('Registration Successfully..!', {
+      toast.success('Registration Done Successfully..!', {
         position: "top-right",
         autoClose: 750,
         hideProgressBar: true,
@@ -84,7 +84,9 @@ export const Registration = () => {
         theme: "colored"
       });
       resetOtp()
-      SubmitHandler(RegistrationData)
+      setTimeout(() => {
+        SubmitHandler(RegistrationData)
+    }, 500);
     }
     else {
       toast.error('Please enter correct OTP..!', {
@@ -100,7 +102,6 @@ export const Registration = () => {
       handleClose()
     }
   }
-
 
   const SubmitHandler = async (data) => {
       if (data.role == '660d478cb08efd702f23f113') {
@@ -161,30 +162,30 @@ export const Registration = () => {
             <div className="form">
               <form enctype="multipart/form-data" >
                 <input type="text" {...register("name")} placeholder="Name" />
-                <input type="text" {...register("email")} placeholder="Email" />
-                <input type="text" {...register("password")} placeholder="Password" />
-                <input type="text" {...register("phone")} placeholder="Contact No" /><br></br>
+                <input type="email" {...register("email")} placeholder="Email" />
+                <input type="password" {...register("password")} placeholder="Password" />
+                <input type="text" {...register("phone")} placeholder="Contact No" />
 
                 <div className='radio'>
-                  <div>
+                  <div style={{backgroundColor:"#d9d9d9" ,width:"280px", padding:"5px", borderRadius:"10px", textAlign:"left"}}>
 
-                    <label>Who are you ?</label><br />
+                    <label style={{fontSize:"18px"}}>You Are: </label><br />
                     <div>
 
                       <input type="radio" value="660d4769b08efd702f23f111" {...register("role")} />{/*Service Provider*/}
-                      <label>Service Provider</label>
+                      <label style={{fontSize:"18px"}}>Service Provider</label>
                     </div>
                     <div>
 
                       <input type="radio" value="660d478cb08efd702f23f113" {...register("role")} />{/* User (Customer) */}
-                      <label>Customer</label>
+                      <label style={{fontSize:"18px"}}>Customer</label>
                     </div>
                   </div>
                 </div>
 
                 {/* <input type="submit" value="Register" /> */}
-                <Button onClick={handleSubmit(handleShow)}>Register</Button>
-
+                <Button onClick={handleSubmit(handleShow)} style={{width:"250px", height:"50px",fontSize:"30px", fontWeight:"bold", backgroundColor:"#0fda9b" , border:"none", borderRadius:"15px"}}>Register</Button>
+                <br/>
                 <Modal show={show} onHide={handleClose} backdrop="static">
                   <Modal.Header closeButton>
                     <Modal.Title>

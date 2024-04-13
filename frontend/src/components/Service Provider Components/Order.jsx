@@ -37,7 +37,7 @@ export const Order = () => {
     updatedItems[index][key] = value;
     setItems(updatedItems);
     console.log(items);
-    console.log(index );
+    console.log(index);
   };
 
 
@@ -176,7 +176,7 @@ export const Order = () => {
       const mailData = {
         name: data.User.name,
         mail: data.User.email,
-        message: "We're delighted to inform you that your service request for an <b>" + data.Service.ServiceName + "</b> has been accepted by our service provider. Your appointment is scheduled for " + Time.Time + " (24 Hour GMT).<br><br>  Please ensure someone is available at the specified time to facilitate the service. If you have any specific instructions to provide, feel free to let us know.<br><br> Thank you for choosing METROMITRA. We're committed to providing you with excellent service.<br><br><b>Date: " + properDate + "</b><br><b>Time: " + Time.Time + "</b><br><b>Address: " + data.Address + "</b><br><br> Best Regards,<br> METROMITRA"
+        message: "We're delighted to inform you that your service request for an <b>" + data.Service.ServiceName + "</b> has been accepted by our service provider. Your appointment is scheduled for " + Time.Time + " (24 Hour GMT).<br>  Please ensure someone is available at the specified time to facilitate the service. If you have any specific instructions to provide, feel free to let us know.<br><br> Thank you for choosing METROMITRA. We're committed to providing you with excellent service.<br><br><b>Date: " + properDate + "</b><br><b>Time: " + Time.Time + "</b><br><b>Address: " + data.Address + "</b><br><br> Best Regards,<br> METROMITRA"
       }
       const mail = axios.post("http://localhost:5000/email/sendMail", mailData)
 
@@ -250,7 +250,7 @@ export const Order = () => {
   const submitOrderList = async (Order) => {
     const formData = items
     console.log("1")
-    const dataToSend = { OrderList:formData, orderId: Order._id };
+    const dataToSend = { OrderList: formData, orderId: Order._id };
     console.log("dataToSend.. ", dataToSend)
     const res = await axios.post("http://localhost:5000/orderList/addOrderList", dataToSend)
     console.log("Order list..", res)
@@ -259,8 +259,8 @@ export const Order = () => {
     console.log("user.data.data.name...", Order.User.name)
     const mailData = {
       name: Order.User.name,
-      // mail: Order.User.email,
-      mail: "jayprithvi@gmail.com",
+      mail: Order.User.email,
+      // mail: "jayprithvi@gmail.com",
       message: "Your service request for <b>" + Order.Service.ServiceName + "</b> has been successfully completed by our service provider on " + properDate + ". We would greatly appreciate it if you could take a moment to share your experience on our platform. Your review will assist other users in selecting service providers and help us improve our services in the future.<br><br>Thank you for choosing METROMITRA. <br><br>Best regards,<br>METROMITRA"
     }
     const mail = axios.post("http://localhost:5000/email/sendMail", mailData);
@@ -342,12 +342,12 @@ export const Order = () => {
                 <tr>
                   <th>Sr. No.</th>
                   <th>Customer Name</th>
-                  <th>Fees</th>
+                  {/* <th>Fees</th> */}
                   <th>Address</th>
-                  <th>Service Name</th>
+                  <th>Service </th>
                   <th>Specific(Work)</th>
                   <th>Date</th>
-                  <th>Approve OR Reject</th>
+                  <th style={{maxWidth:"160px"}}>Approve OR Reject</th>
                   <th>Past Reviews of User</th>
                 </tr>
               </thead>
@@ -357,17 +357,17 @@ export const Order = () => {
                   Order && Order.map((o, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{o.User ? o.User.name : '-'}</td>
-                      <td>{o.Service ? o.Service.Fees : '-'}</td>
-                      <td style={{ maxWidth: "100px" }}>{o.Address ? o.Address : '-'}</td>
+                      <td style={{ maxWidth: "100px" }}>{o.User ? o.User.name : '-'}</td>
+                      {/* <td>{o.Service ? o.Service.Fees : '-'}</td> */}
+                      <td style={{ maxWidth: "180px" }}>{o.Address ? o.Address : '-'}</td>
                       <td>{o.Service ? o.Service.ServiceName : '-'}</td>
-                      <td>{o.Work}</td>
+                      <td style={{ maxWidth: "150px" }}>{o.Work}</td>
                       <td>{o.Date ? new Date(o.Date).toLocaleDateString('en-GB') : '-'}</td>
-                      <td>
+                      <td style={{ maxWidth: "180px" }}>
                         {o.Status.toLowerCase() === 'pending' && (
                           <div>
                             {/* <button onClick={() => handleAccept(o)} className={o.Status.toLowerCase() === 'pending' ? 'btn btn-primary' : 'btn btn-secondary'}> */}
-                            <button onClick={() => handleShow_forTime()} className={o.Status.toLowerCase() === 'pending' ? 'btn btn-primary' : 'btn btn-secondary'}>
+                            <button style={{ marginRight:"10px" }} onClick={() => handleShow_forTime()} className={o.Status.toLowerCase() === 'pending' ? 'btn btn-primary' : 'btn btn-secondary'}>
                               {acceptedOrderId === o._id ? 'Complete' : 'Accept'}
                             </button>
 
@@ -391,7 +391,7 @@ export const Order = () => {
                                   Close
                                 </Button>
                                 {/* <Button variant="success" onClick={handleSubmit(handleAccept)}>Book</Button> */}
-                                <Button variant="success" onClick={handleSubmit(data => handleAccept(data, o))}>Book</Button>
+                                <Button variant="success" onClick={handleSubmit(data => handleAccept(data, o))}>Confirm</Button>
                               </Modal.Footer>
                             </Modal>
 
@@ -422,7 +422,7 @@ export const Order = () => {
                                           <label className="label">Item:</label>
                                           <input
                                             className="input-field"
-                                            type="text" onKeyUp={(e) => handleChange(index, 'ItemList', e.target.value)}   />
+                                            type="text" onKeyUp={(e) => handleChange(index, 'ItemList', e.target.value)} />
                                         </div>
                                         <div className="input-group">
                                           <label className="label">Price:</label>
@@ -431,7 +431,7 @@ export const Order = () => {
                                             type="text"
 
                                             onKeyUp={(e) => handleChange(index, 'Price', e.target.value)}
-                                            
+
                                           />
                                         </div>
                                         {/* <input className="hidden-input" type="hidden" {...orderListRegister("OrderId")} value={o.OrderId} /> */}
@@ -455,7 +455,7 @@ export const Order = () => {
                             {/* <button onClick={() => handleComplete(o)} className={o.Status.toLowerCase() === 'accepted' ? 'btn btn-primary' : 'btn btn-success'}>
                               {completedOrderId === o._id ? 'Completed' : 'Complete'}
                             </button> */}
-                            |
+                            
                             <button onClick={() => handleCancel(o)} className='btn btn-danger'>Cancel</button>
                           </div>
                         )}
@@ -466,19 +466,31 @@ export const Order = () => {
                       <Modal show={showReview} onHide={handleClose} >
                         <Modal.Header closeButton>
                           <Modal.Title>
-                            Reviews Given By Service Providers
+                            Reviews Given in Past By Service Providers
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                          <div>
+                          {/* <div>
                             {
                               OrderByUserId && OrderByUserId.map(o => (
                                 <div style={{ width: "100%", margin: "2px", backgroundColor: "yellow" }}>
-                                  <p>{o.ServiceProviderReview}</p>
+                                  <p><b>{o.ServiceProviderReview}</b></p>
+                                </div>
+                              ))
+                            }
+                          </div> */}
+
+                          <div class="container">
+                            {
+                              OrderByUserId && OrderByUserId.map((o, index) => (
+                                <div class="review-item" key={index}>
+                                  <p class="review-text">{o.ServiceProviderReview}</p>
                                 </div>
                               ))
                             }
                           </div>
+
+
                         </Modal.Body>
                         <Modal.Footer>
                           <Button variant="secondary" onClick={handleClose}>

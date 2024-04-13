@@ -152,7 +152,7 @@ const DownloadInvoice = ({ orderId }) => {
 
                             ))}
                         </View>
-                        <Text style={styles.invoiceHead}>Total: {Total + ServiceData.Fees}</Text>
+                        <Text style={styles.invoiceHead}>Total: {Total + parseInt(ServiceData.Fees)}</Text>
                         <Text style={styles.invoiceThank}>Thank You for Choosing Metromita!</Text>
                         <View style={styles.footer}>
                         </View>

@@ -85,7 +85,7 @@
 
 .radio{
     justify-content: center;
-    align-items: center;
+    align-items: start;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -95,11 +95,11 @@
 .radio input
 {
     border-width: 0;
-    height: 20px;
+    height: 18px;
     padding: 0;
     margin: 0;
     /* background-color: red; */
-    width:50px;
+    width:42px;
 }
 
 .radio label

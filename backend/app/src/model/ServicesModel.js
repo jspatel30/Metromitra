@@ -15,6 +15,12 @@ const serviceSchema = new Schema({
     City:{
         type:String
     },
+    Minimum:{
+        type:String
+    },
+    Maximum:{
+        type:String
+    },
     State:{
         type:String
     },

@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from 'react-hook-form';
 import ReactPDF from '@react-pdf/renderer';
-import DownloadInvoice  from '../DownloadInvoice';
+import DownloadInvoice from '../DownloadInvoice';
 
 export const UserOrderPage = () => {
 
@@ -29,7 +29,7 @@ export const UserOrderPage = () => {
     }, []);
 
 
-    
+
     useEffect(() => {
         if (Order.length > 0) {
             const dataTable = window.$(tableRef.current).DataTable();
@@ -175,7 +175,7 @@ export const UserOrderPage = () => {
 
 
     const navigate = useNavigate()
-    const invoice = async(orderId) => {
+    const invoice = async (orderId) => {
         console.log(orderId)
         navigate(`/invoice-download/${orderId}`)
     }
@@ -215,21 +215,22 @@ export const UserOrderPage = () => {
                                             <td>{o.Service.Fees}</td>
                                             <td>{new Date(o.Date).toLocaleDateString('en-GB')}</td>
                                             <td>{o.Service.ServiceName}</td>
-                                            <td style={{minWidth:"100px"}}>
+                                            <td style={{ minWidth: "100px" }}>
                                                 {o.Status.toLowerCase() !== "cancelled" && (
-                                                    
+
                                                     <button
                                                         className={
-                                                            o.Status === 'Completed' ? 'btn btn-success' :
-                                                                o.Status === 'Rejected' ? 'btn btn-danger' :
-                                                                    o.Status === 'Pending' ? 'btn btn-primary' :
-                                                                        o.Status === 'Cancelled' ? 'btn btn-danger' : 'btn btn-primary'
+                                                            o.Status === 'Complete' ? 'btn btn-success' :
+                                                                o.Status === 'Completed' ? 'btn btn-success' :
+                                                                    o.Status === 'Rejected' ? 'btn btn-danger' :
+                                                                        o.Status === 'Pending' ? 'btn btn-primary' :
+                                                                            o.Status === 'Cancelled' ? 'btn btn-danger' : 'btn btn-primary'
                                                         }
                                                         style={{ width: '100px', borderRadius: "10px", }}
                                                         disabled={o.Status !== 'Completed'}
-                                                        // onClick={()=>{invoice(o._id)}}
+                                                    // onClick={()=>{invoice(o._id)}}
                                                     >
-                                                        {o.Status === 'Completed' ? <DownloadInvoice  orderId = {o._id}/> : o.Status}
+                                                        {o.Status === 'Completed' ? <DownloadInvoice orderId={o._id} /> :o.Status === 'Complete'? "Accepted": o.Status}
                                                     </button>
                                                 )}
                                                 &nbsp;
@@ -317,7 +318,7 @@ export const UserOrderPage = () => {
                                                                         <span className="detail-label">Your Review:</span>
                                                                         <span className="detail-value">{showUpdateData.UserReview}</span>
                                                                     </div>
-                                                            )}
+                                                                )}
 
                                                             {
                                                                 showUpdateData.Stars > 0 && (
@@ -329,14 +330,14 @@ export const UserOrderPage = () => {
                                                                             ))}
                                                                         </span>
                                                                     </div>
-                                                            )}
+                                                                )}
                                                             <div className="detail-row">
                                                                 <span className="detail-label">Service Name:</span>
                                                                 <span className="detail-value">{showUpdateData.Service.ServiceName}</span>
                                                             </div>
 
                                                             {
-                                                                showUpdateData.Work && 
+                                                                showUpdateData.Work &&
                                                                 <div className="detail-row">
                                                                     <span className="detail-label">Specific Work:</span>
                                                                     <span className="detail-value">{showUpdateData.Work}</span>
@@ -353,11 +354,11 @@ export const UserOrderPage = () => {
                                                             </div>
                                                             {
                                                                 showUpdateData.Time && (
-                                                            <div className="detail-row">
-                                                                <span className="detail-label">Time:</span>
-                                                                <span className="detail-value">{showUpdateData.Time}</span>
-                                                            </div>
-                                                            )}
+                                                                    <div className="detail-row">
+                                                                        <span className="detail-label">Time:</span>
+                                                                        <span className="detail-value">{showUpdateData.Time}</span>
+                                                                    </div>
+                                                                )}
                                                             {
                                                                 showUpdateData.ServiceProviderReview &&
                                                                 <div className="detail-row">

@@ -85,13 +85,6 @@
 }
 
 
-
-
-
-
-
-
-
 /* Style for form container */
 .form-container {
   max-height: 300px; /* Set your desired maximum height */
@@ -135,3 +128,18 @@
   display: none;
 }
 
+
+
+.container {
+  width: 100%;
+}
+
+.review-item {
+  width: 100%;
+  margin: 2px;
+  /* background-color: yellow; */
+}
+
+.review-text {
+  font-weight: bold;
+}
