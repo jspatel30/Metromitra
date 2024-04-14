@@ -186,6 +186,7 @@ const getServiceByServiceProviderId = async (req, res) => {
         const ServiceProviderid = req.params.id
         console.log(ServiceProviderid)
         const service = await ServiceModel.find({ ServiceProvider: ServiceProviderid, Status: 1 }).populate("ServiceProvider")
+
         console.log(service)
         if (service != null) {
             res.status(200).json({

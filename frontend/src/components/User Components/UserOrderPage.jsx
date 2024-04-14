@@ -24,7 +24,6 @@ export const UserOrderPage = () => {
     const [showUpdateData, setshowUpdateData] = useState()
     const tableRef = useRef(null);
     useEffect(() => {
-        // Fetch data and setOrder
         getOrder();
     }, []);
 
@@ -42,26 +41,40 @@ export const UserOrderPage = () => {
 
     const getOrder = async () => {
         setisLoading(true)
-        // const res = await axios.get("http://localhost:5000/order/getOrder");
         const res = await axios.get("http://localhost:5000/order/getOrderByUserIdHistory/" + userId);
         const orders = res.data.data;
-        // console.log("orders............", orders)
+        console.log("res.data.data.. ",res.data.data)
+        console.log("orders............", orders)
         // Fetch service provider details for each order
         const ordersWithServiceProvider = await Promise.all(
             orders.map(async (order) => {
                 const serviceProviderId = order.Service.ServiceProvider;
+                const totalPrice = await getOrderListByOrderId(order._id)
                 // console.log("serviceProviderID... ", serviceProviderId)
                 const serviceProviderRes = await getServiceProviderById(serviceProviderId);
                 // console.log("serviceProviderRes... ", serviceProviderRes)
                 const serviceProviderData = serviceProviderRes.data.data.name;
                 // console.log("serviceProviderData... ", serviceProviderData)
-                return { ...order, serviceProvider: serviceProviderData };
+                return { ...order, serviceProvider: serviceProviderData ,totalPrice};
             })
         );
         setOrder(ordersWithServiceProvider);
         console.log("Full data.. ", ordersWithServiceProvider)
         setisLoading(false)
     };
+
+    const getOrderListByOrderId = async(orderId) =>{
+        const res = await axios.get("http://localhost:5000/orderList/getOrderListByOrderId/"+orderId)
+        console.log("orderList - ",res.data.orderList)
+        const orderList = res.data.orderList;
+        const totalPrice = orderList.reduce((total, order) => {
+            // Convert empty string to 0 before adding to the total
+            const price = order.Price === "" ? 0 : parseInt(order.Price);
+            return total + price;
+        }, 0);
+        return totalPrice;
+    }
+
 
     const addUserReview = async (data) => {
         const user = await axios.get("http://localhost:5000/getuser/getUserById/" + userId)
@@ -174,15 +187,6 @@ export const UserOrderPage = () => {
     };
 
 
-    const navigate = useNavigate()
-    const invoice = async (orderId) => {
-        console.log(orderId)
-        navigate(`/invoice-download/${orderId}`)
-    }
-
-
-
-
     return (
         <>
             <div className='UserOrder_MainContainer'>
@@ -199,7 +203,7 @@ export const UserOrderPage = () => {
                                 <tr>
                                     <th>Sr. No.</th>
                                     <th>Service Provider Name</th>
-                                    <th>Fees</th>
+                                    <th>Total</th>
                                     <th>Date</th>
                                     <th>Service Name</th>
                                     <th>Action</th>
@@ -208,11 +212,13 @@ export const UserOrderPage = () => {
                             </thead>
                             <tbody>
                                 {
-                                    Order && Order.map((o, index) => (
+                                    Order && Order.map((o, index) => 
+                                    (
                                         <tr key={index}>
                                             <td>{index + 1}</td>
                                             <td>{o.serviceProvider}</td>
-                                            <td>{o.Service.Fees}</td>
+                                            {/* <td>{o.Service.Fees}</td> */}
+                                            <td>{parseInt(o.Service.Fees) + o.totalPrice}</td>
                                             <td>{new Date(o.Date).toLocaleDateString('en-GB')}</td>
                                             <td>{o.Service.ServiceName}</td>
                                             <td style={{ minWidth: "100px" }}>

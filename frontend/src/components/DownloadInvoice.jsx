@@ -147,7 +147,7 @@ const DownloadInvoice = ({ orderId }) => {
                                 <View style={styles.tableRow} key={index}>
                                     <Text style={styles.tableCell}>{element.ItemName}</Text>
                                     <Text style={styles.tableCell}>{element.Price}</Text>
-                                    {Total += parseInt(element.Price)}
+                                    {Total += element.Price !== "" ? parseInt(element.Price) : 0}
                                 </View>
 
                             ))}
