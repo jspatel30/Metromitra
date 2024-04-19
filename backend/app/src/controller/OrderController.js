@@ -99,7 +99,7 @@ const getOrderById = async(req,res) =>{
     try
     {
         const orderId = req.params.id        
-        const order = await OrderModel.findOne({ _id: orderId }).populate("User")//.populate("Service")
+        const order = await OrderModel.findOne({ _id: orderId }).populate("User").populate("Service")
         if(order != null)
         {
             res.status(200).json({

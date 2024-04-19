@@ -30,7 +30,7 @@
 .Registration-Container {
     background-color: #bbc5ca7b;
     width: 500px;
-    height: 730px;
+    height: 760px;
     position: absolute;
     top: 60px;
     display: flex;
@@ -113,3 +113,8 @@
     color: black;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+}

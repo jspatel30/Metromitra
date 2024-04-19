@@ -12,7 +12,32 @@ import { Button } from 'react-bootstrap';
 
 export const Login = () => {
 
-    const { register, handleSubmit } = useForm()
+    const validationSchemaLogin = {
+        email: {
+          required: {
+            value: true,
+            message: "Email is Required"
+          },
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: "Invalid email address"
+          }
+        },
+        password: {
+          required: {
+            value: true,
+            message: "Password is Required"
+          }
+        },
+        role: {
+            required: {
+              value: true,
+              message: "Role selection is Required"
+            }
+          }
+    }
+
+    const { register, handleSubmit , formState: { errors }} = useForm()
     const navigate = useNavigate()
     const { register: otpRegister, handleSubmit: otpHandleSubmit, reset: resetOtp } = useForm();
     const [show, setshow] = useState(false)
@@ -200,21 +225,37 @@ export const Login = () => {
 
                             <form onSubmit={handleSubmit(submitHandler)}>
 
-                                <input type="text" {...register("email")} placeholder="Email" />
-                                <input type="password" {...register("password")} placeholder="Password" />
+                                <input type="text" {...register("email",validationSchemaLogin.email)} placeholder="Email" />
+                                <span className="login-error-message">
+                                    {
+                                        errors.email && errors.email.message
+                                    }
+                                </span>
+
+                                <input type="password" {...register("password",validationSchemaLogin.password)} placeholder="Password" />
+                                <span className="login-error-message">
+                                    {
+                                        errors.password && errors.password.message
+                                    }
+                                </span>
 
                                 <div className='Login_Radio'>
                                     <label>You are : </label>
                                     <div style={{ display: "flex", alignItems: "center" }}>
-                                        <input type="radio" value="ServiceProvider" {...register("role")} />
+                                        <input type="radio" value="ServiceProvider" {...register("role",validationSchemaLogin.role)} />
                                         <label>Service Provider</label>
                                     </div>
 
                                     <div style={{ display: "flex", alignItems: "center" }}>
-                                        <input type="radio" value="User" {...register("role")} />
+                                        <input type="radio" value="User" {...register("role",validationSchemaLogin.role)} />
                                         <label>User</label>
                                     </div>
                                 </div>
+                                <span className="login-error-message">
+                                    {
+                                        errors.role && errors.role.message
+                                    }
+                                </span>
                                 <input type="submit" value="Login" />
 
 

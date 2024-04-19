@@ -216,7 +216,6 @@ export const UserOrderPage = () => {
                                         <tr key={index}>
                                             <td>{index + 1}</td>
                                             <td>{o.serviceProvider}</td>
-                                            {/* <td>{o.Service.Fees}</td> */}
                                             <td>{parseInt(o.Service.Fees) + o.totalPrice}</td>
                                             <td>{new Date(o.Date).toLocaleDateString('en-GB')}</td>
                                             <td>{o.Service.ServiceName}</td>
