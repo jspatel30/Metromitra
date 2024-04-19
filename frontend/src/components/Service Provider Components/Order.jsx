@@ -357,13 +357,13 @@ export const Order = () => {
                   Order && Order.map((o, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td style={{ maxWidth: "100px" }}>{o.User ? o.User.name : '-'}</td>
+                      <td style={{ maxWidth: "90px" }}>{o.User ? o.User.name : '-'}</td>
                       {/* <td>{o.Service ? o.Service.Fees : '-'}</td> */}
-                      <td style={{ maxWidth: "180px" }}>{o.Address ? o.Address : '-'}</td>
+                      <td style={{ maxWidth: "170px" }}>{o.Address ? o.Address : '-'}</td>
                       <td>{o.Service ? o.Service.ServiceName : '-'}</td>
                       <td style={{ maxWidth: "150px" }}>{o.Work}</td>
                       <td>{o.Date ? new Date(o.Date).toLocaleDateString('en-GB') : '-'}</td>
-                      <td style={{ maxWidth: "180px" }}>
+                      <td style={{ maxWidth: "200px" }}>
                         {o.Status.toLowerCase() === 'pending' && (
                           <div>
                             {/* <button onClick={() => handleAccept(o)} className={o.Status.toLowerCase() === 'pending' ? 'btn btn-primary' : 'btn btn-secondary'}> */}

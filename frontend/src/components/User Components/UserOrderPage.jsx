@@ -68,7 +68,6 @@ export const UserOrderPage = () => {
         console.log("orderList - ",res.data.orderList)
         const orderList = res.data.orderList;
         const totalPrice = orderList.reduce((total, order) => {
-            // Convert empty string to 0 before adding to the total
             const price = order.Price === "" ? 0 : parseInt(order.Price);
             return total + price;
         }, 0);
